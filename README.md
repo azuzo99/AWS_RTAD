@@ -1,2 +1,2 @@
 # AWS_RTAD
-AWS Real Time Anomaly Detection Platform
+AWS Real Time Anomaly Detection Platform  
