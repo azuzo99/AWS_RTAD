@@ -81,6 +81,7 @@ Resources:
 
   StagingS3Bucket:
     Type: "AWS::S3::Bucket"
+    DeletionPolicy: Retain
     Properties:
       BucketName: !Sub 'sensor-${SensorNumber}-data-storage'
       BucketEncryption:
@@ -317,3 +318,7 @@ Outputs:
   KinesisDataGeneratorCognitoUser:
     Description: We saved your Cognito user/password in AWS Secrets
     Value: !Ref KinesisDataGeneratorSecret
+    
+  StagingBucketName:
+    Description: "The name of the staging S3 bucket"
+    Value: !Ref StagingS3Bucket
