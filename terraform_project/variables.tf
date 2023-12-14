@@ -39,3 +39,15 @@ variable "root_flink_app_name" {
   description = "Name of Flink app"
   type        = string
 }
+
+
+# Batch Module
+variable "root_reference_bucket_name" {
+  description = "Name of Reference Bucket"
+  type        = string
+}
+
+variable "root_reference_data_filename" {  
+  description = "Name of Reference Data Filename"
+  type        = string
+}

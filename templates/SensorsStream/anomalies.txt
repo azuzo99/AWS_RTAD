@@ -1,0 +1,3 @@
+{ "patient_id": {{random.number({ "min":4, "max":5 })}}, "hearth_rate":
+{{random.number( { "min":90, "max":130 } )}},"sensor_read_timestamp": "
+{{date.now("YYYY-MM-DD HH:mm:ss")}}" }
