@@ -25,3 +25,13 @@ module "streaming" {
     flink_app_name =  var.root_flink_app_name
 
 }
+
+
+module "batch" {
+
+    source = "./modules/batch_module"
+    
+    reference_bucket_name = var.root_reference_bucket_name
+    reference_data_filename = var.root_reference_data_filename
+
+}
