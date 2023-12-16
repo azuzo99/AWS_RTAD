@@ -51,3 +51,29 @@ variable "root_reference_data_filename" {
   description = "Name of Reference Data Filename"
   type        = string
 }
+
+variable "root_raw_zone_bucket_name" {
+  description = "Name of Raw Zone Bucket"
+  type        = string
+}
+
+variable "root_processed_zone_bucket_name" {
+  description = "Name of Processed Zone Bucket"
+  type        = string
+}
+
+variable "root_glue_catalog_name" {
+  description = "Name of Glue Data Catalog"
+  type        = string
+}
+
+
+variable "root_glue_script_bucket" {
+  description = "Name of Glue Script Bucket Location"
+  type        = string
+}
+
+variable "root_glue_script_filename" {
+  description = "Name of Glue Script File"
+  type        = string
+}
