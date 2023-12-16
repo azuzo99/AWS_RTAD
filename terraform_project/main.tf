@@ -33,5 +33,10 @@ module "batch" {
     
     reference_bucket_name = var.root_reference_bucket_name
     reference_data_filename = var.root_reference_data_filename
+    raw_zone_bucket_name = var.root_raw_zone_bucket_name
+    processed_zone_bucket_name = var.root_processed_zone_bucket_name
+    glue_catalog_name = var.root_glue_catalog_name
+    glue_script_bucket = var.root_glue_script_bucket
+    glue_script_filename = var.root_glue_script_filename
 
 }
