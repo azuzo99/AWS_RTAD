@@ -2,4 +2,4 @@
 ## AWS Real Time Anomaly Detection Platform  
 
 ### initial diagram idea
-![RTAD AWS (2)](https://github.com/azuzo99/AWS_RTAD/assets/94411970/a1ec128d-763f-4e75-b649-b11858ff2567)
+![aws_rtad_actual](https://github.com/azuzo99/AWS_RTAD/assets/94411970/9b9ba399-4511-4928-bc64-b376c38073d2)
