@@ -41,7 +41,10 @@ resource "aws_iam_policy" "glue_policy" {
           "glue:GetTables",
           "glue:GetPartition",
           "glue:GetPartitions",
-          "glue:CreateTable"
+          "glue:CreateTable",
+          "glue:BatchGetPartition",
+          "glue:BatchCreatePartition",
+          "glue:UpdateTable"
         ],
         Resource = [
           "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:catalog",
@@ -70,7 +73,7 @@ resource "aws_iam_role" "glue_crawler_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "glue_s3_attach" {
+resource "aws_iam_role_policy_attachment" "glue_attach" {
   role       = aws_iam_role.glue_crawler_role.name
   policy_arn = aws_iam_policy.glue_policy.arn
 }

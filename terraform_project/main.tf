@@ -25,6 +25,15 @@ module "streaming" {
 
     flink_app_name =  var.root_flink_app_name
 
+    kdf_delivery_stream_name = var.root_kdf_delivery_stream_name
+
+
+    aws_region = module.batch.aws_region
+    account_id = module.batch.account_id
+    glue_data_catalog_name = module.batch.glue_data_catalog_name
+    firehose_glue_catalog_table_name = module.batch.firehose_glue_catalog_table_name
+    raw_zone_bucket_arn = module.batch.raw_zone_bucket_arn
+
 }
 
 

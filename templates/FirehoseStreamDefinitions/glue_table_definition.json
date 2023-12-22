@@ -1,0 +1,19 @@
+{
+  "partitionKeys": [
+    {
+      "name": "patient_id",
+      "type": "string"
+    }
+  ],
+    "attributes": [
+      {
+        "name": "hearth_rate",
+        "type": "int"
+      },
+      {
+        "name": "sensor_read_timestamp",
+        "type": "timestamp"
+      }
+    ]
+  }
+  

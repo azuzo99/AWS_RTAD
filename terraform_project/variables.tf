@@ -47,6 +47,12 @@ variable "root_flink_app_name" {
   type        = string
 }
 
+variable "root_kdf_delivery_stream_name" {
+  description = "Name of Kinesis Firehose Delivery Stream"
+  type        = string
+}
+
+
 
 # Batch Module
 
