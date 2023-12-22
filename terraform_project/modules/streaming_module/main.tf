@@ -13,3 +13,4 @@ resource "aws_kinesis_stream" "kds_stream" {
     module = "streaming module"
   }
 }
+

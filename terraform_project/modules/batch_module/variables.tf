@@ -2,6 +2,12 @@ variable "reference_bucket_name" {}
 variable "reference_data_filename" {}
 variable "raw_zone_bucket_name" {}
 variable "processed_zone_bucket_name" {}
+variable "athena_query_bucket_name" {}
+variable "athena_workgroup_name" {}
 variable "glue_catalog_name" {}
+variable "firehose_data_catalog_table_name" {}
 variable "glue_script_bucket" {}
 variable "glue_script_filename" {}
+variable "raw_zone_crawler_name" {}
+variable "processed_zone_crawler_name" {}
+variable "reference_bucket_crawler_name" {}
