@@ -100,18 +100,25 @@ resource "aws_glue_catalog_database" "data_catalog" {
 
 resource "aws_glue_catalog_table" "firehose_glue_catalog_table" {
   name          = var.firehose_data_catalog_table_name
-  database_name = var.glue_catalog_name
+  database_name = aws_glue_catalog_database.data_catalog.name
+
+  dynamic "partition_keys" {
+    for_each = local.firehose_glue_catalog_table_definition.partitionKeys
+      content {
+        name = partition_keys.value.name
+        type = partition_keys.value.type
+      }
+  }
 
   storage_descriptor {
 
-    columns {
-      name = "hearth_rate"
-      type = "int"
-    }
+    dynamic "columns" {
 
-    columns {
-      name = "sensor_read_timestamp"
-      type = "timestamp"
+      for_each = local.firehose_glue_catalog_table_definition.attributes
+      content {
+        name = columns.value.name
+        type = columns.value.type
+      }
     }
 
     location      = "s3://${aws_s3_bucket.raw_zone_bucket.bucket}/"
@@ -127,10 +134,8 @@ resource "aws_glue_catalog_table" "firehose_glue_catalog_table" {
     }
   }
 
-  partition_keys {
-    name = "patient_id"
-    type = "int"
-  }
+
+  depends_on = [ aws_glue_catalog_database.data_catalog ]
 
 }
 
@@ -138,6 +143,7 @@ resource "aws_glue_crawler" "raw_zone_crawler" {
   database_name = aws_glue_catalog_database.data_catalog.name
   name          = var.raw_zone_crawler_name
   role          = aws_iam_role.glue_crawler_role.arn
+  # table_prefix  = aws_glue_catalog_table.firehose_glue_catalog_table.name
   schedule = "cron(0 23 ? * * *)"
 
   s3_target {
