@@ -1,3 +1,10 @@
+# External
+variable "region" {
+  description = "Region"
+  type        = string
+}
+
+
 # Sensor Module
 variable "root_username_1" {
   description = "Username for the first sensor"
@@ -42,6 +49,7 @@ variable "root_flink_app_name" {
 
 
 # Batch Module
+
 variable "root_reference_bucket_name" {
   description = "Name of Reference Bucket"
   type        = string
@@ -62,8 +70,23 @@ variable "root_processed_zone_bucket_name" {
   type        = string
 }
 
+variable "root_athena_query_bucket_name" {
+  description = "Name of Athena Query Bucket"
+  type        = string
+}
+
+variable "root_athena_workgroup_name" {
+  description = "Name of Athena Workgroup"
+  type        = string
+}
+
 variable "root_glue_catalog_name" {
   description = "Name of Glue Data Catalog"
+  type        = string
+}
+
+variable "root_firehose_data_catalog_table_name" {
+  description = "Name of Firehose Data Catalog Table"
   type        = string
 }
 
@@ -77,3 +100,18 @@ variable "root_glue_script_filename" {
   description = "Name of Glue Script File"
   type        = string
 }
+
+variable "root_raw_zone_crawler_name" {
+  description = "Name of Raw Zone Crawler"
+  type        = string
+}
+variable "root_processed_zone_crawler_name" {
+  description = "Name of Processed Zone Crawler"
+  type        = string
+}
+
+variable "root_reference_bucket_crawler_name" {
+  description = "Name of Reference Bucket Crawler"
+  type        = string
+}
+
