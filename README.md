@@ -2,7 +2,7 @@
 
 ## AWS Real Time Anomaly Detection Platform
 
-![Alt text](../documentation/aws_rtad_actual.png)
+![Alt text](/documentation/aws_rtad_actual.png)
 
 ### Overview
 
@@ -12,15 +12,15 @@ System is designed to find strange behaviour and notify medical staff in case of
 
 Platform is divided into 4 parts:
 
-* [Sensors](../documentation/sensors/readme.md)
-* [Streaming](../documentation/streaming/readme.md)
-* [Batch](../documentation/batch/readme.md)
-* [Reporting](../documentation/reporting/readme.md)
+* [Sensors](/documentation/sensors/readme.md)
+* [Streaming](/documentation/streaming/readme.md)
+* [Batch](/documentation/batch/readme.md)
+* [Reporting](/documentation/reporting/readme.md)
 
 ### What is anomaly in this case?
 To create such a system, there were a need to simplify detection at the very beginning.
 
-![Alt text](../documentation/hearth_work.png)
+![Alt text](/documentation/hearth_work.png)
 
 Diagram shows typical ECG of human hearth. In this case we need to focus on QT interval that starts at the beginning of the QRS complex (caused by the depolarization of ventricles) and ends at the end of the T wave (the repolarization of ventricles).
 
