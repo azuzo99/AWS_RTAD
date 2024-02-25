@@ -164,7 +164,7 @@ Resources:
     Properties:
       ServiceToken: !GetAtt StagingLambdaFunc.Arn
       StagingS3BucketName: !Ref StagingS3Bucket
-      UrlLambdaZipToStage: "https://github.com/awslabs/amazon-kinesis-data-generator/blob/mainline/setup/datagen-cognito-setup.zip?raw=true"
+      UrlLambdaZipToStage: "https://github.com/azuzo99/amazon-kinesis-data-generator/blob/mainline/setup/datagen-cognito-setup.zip?raw=true"
       FilenameKey: "datagen-cognito-setup.zip"
       Expected512Sha: "bbe80f52ec7a246c065069f2bb0112a1a968472e6b48946ab88d73e5284787cd56acbd1d7adaa07a8120f3e1bd8d6644b96d18d7f0d7a2e60013d77b00d07eaa"
 
@@ -313,7 +313,7 @@ Resources:
 Outputs:
   KinesisDataGeneratorUrl:
     Description: The URL for your Kinesis Data Generator.
-    Value: !Sub "https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html?${SetupCognitoCustom.Querystring}"
+    Value: !Sub "https://github.com/azuzo99/amazon-kinesis-data-generator/blob/create-multiple-sensors/web/producer.html?${SetupCognitoCustom.Querystring}"
 
   KinesisDataGeneratorCognitoUser:
     Description: We saved your Cognito user/password in AWS Secrets
