@@ -313,7 +313,7 @@ Resources:
 Outputs:
   KinesisDataGeneratorUrl:
     Description: The URL for your Kinesis Data Generator.
-    Value: !Sub "https://github.com/azuzo99/amazon-kinesis-data-generator/blob/create-multiple-sensors/web/producer.html?${SetupCognitoCustom.Querystring}"
+    Value: !Sub "https://azuzo99.github.io/amazon-kinesis-data-generator/web/producer.html?${SetupCognitoCustom.Querystring}"
 
   KinesisDataGeneratorCognitoUser:
     Description: We saved your Cognito user/password in AWS Secrets
