@@ -9,6 +9,13 @@ resource "aws_s3_bucket" "reference_bucket" {
   }
 }
 
+resource "aws_s3_bucket_versioning" "reference_bucket_versioning" {
+  bucket = aws_s3_bucket.reference_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_object" "reference_data" {
   bucket = aws_s3_bucket.reference_bucket.id
   key    = var.reference_data_filename

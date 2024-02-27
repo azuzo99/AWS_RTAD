@@ -1,3 +1,8 @@
-{ "patient_id": {{random.number({ "min":4, "max":5 })}}, "hearth_rate":
-{{random.number( { "min":90, "max":130 } )}},"sensor_read_timestamp": "
-{{date.now("YYYY-MM-DD HH:mm:ss")}}" }
+{
+     "holter_id": {{random.number({ "min":1, "max":3 })}}, 
+     "BPM":{{random.number( { "min":140, "max":200 } )}}, 
+     "QRS":{{random.number( { "min":50, "max":100 } )}}, 
+     "QT":{{random.number( { "min":50, "max":100 } )}},
+     "RR":{{random.number( { "min":50, "max":100 } )}},
+     "sensor_read_timestamp": "{{date.now("YYYY-MM-DD HH:mm:ss")}}" 
+}

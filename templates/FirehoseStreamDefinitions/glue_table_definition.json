@@ -1,13 +1,25 @@
 {
   "partitionKeys": [
     {
-      "name": "patient_id",
-      "type": "string"
+      "name": "holter_id",
+      "type": "int"
     }
   ],
     "attributes": [
       {
-        "name": "hearth_rate",
+        "name": "BPM",
+        "type": "int"
+      },
+      {
+        "name": "QRS",
+        "type": "int"
+      },
+      {
+        "name": "QT",
+        "type": "int"
+      },
+      {
+        "name": "RR",
         "type": "int"
       },
       {
