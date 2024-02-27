@@ -1,4 +1,11 @@
-patient_id,first_name,last_name,age,email,country,postal_code,blood_type,height,weight,birth_date,comorbidities
-1,Tiebout,Parcell,57,tparcell0@ihg.com,Portugal,3400-696,AB-,109.05,39.03,6/11/1949,true
-2,Lewie,Vedishchev,37,lvedishchev1@whitehouse.gov,China,,A-,160.25,109.27,11/2/1951,true
-3,Elsy,McLese,81,emclese2@pagesperso-orange.fr,China,,A+,131.91,147.9,4/10/2002,true
+holter_id,patient_id,firstname,lastname,sex,age,blood_type,height,weight,comorbidities,medicines_taken
+1,7401218119,Oliver,Rodriguez,M,50,O+,173.37,56.65,"None, Asthma, Heart Disease","Metformin, Lisinopril"
+2,1222188674,Amelia,Garcia,F,12,A-,142.19,21.71,"Heart Disease, Diabetes, None","Metformin, Simvastatin"
+3,7601097594,Ava,Williams,F,48,O-,184.56,94.38,,"Amlodipine, Lisinopril"
+4,7002080084,Henry,Smith,M,54,O+,154.64,64.24,Diabetes,"Lisinopril, Atorvastatin, None"
+5,8807052438,Emma,Davis,F,35,A+,178.84,70.28,"Hypertension, Diabetes, None",Amlodipine
+6,7712078013,James,Garcia,M,46,A-,176.56,71.68,"Diabetes, None",
+7,8410132852,Ava,Brown,F,39,O-,193.24,98.39,"None, Diabetes, Asthma",
+8,1630242695,Oliver,Jones,M,8,AB+,52.06,22.57,Hypertension,
+9,2032012747,Mia,Brown,F,4,A+,70.17,51.98,,Amlodipine
+10,6811288770,Liam,Smith,M,55,B+,174.19,79.3,"Hypertension, None","Lisinopril, Simvastatin, Metformin"

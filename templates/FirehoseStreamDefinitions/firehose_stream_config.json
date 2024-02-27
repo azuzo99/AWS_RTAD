@@ -1,7 +1,7 @@
 {
-    "dynamic_partitioning_prefix":"date=!{timestamp:yyyy-MM-dd}/patient_id=!{partitionKeyFromQuery:patient_id}/",
+    "dynamic_partitioning_prefix":"date=!{timestamp:yyyy-MM-dd}/holter_id=!{partitionKeyFromQuery:holter_id}/",
     "dynamic_partitioning_error_prefix":"!{firehose:error-output-type}/date=!{timestamp:yyyy-MM-dd}/",
-    "jq_expression":"{patient_id:.patient_id}"
+    "jq_expression":"{holter_id:.holter_id}"
 }
 
 
