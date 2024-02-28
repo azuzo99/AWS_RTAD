@@ -61,5 +61,5 @@ module "batch" {
     raw_zone_crawler_name = var.root_raw_zone_crawler_name
     processed_zone_crawler_name = var.root_processed_zone_crawler_name
     reference_bucket_crawler_name = var.root_reference_bucket_crawler_name
-
+    lambda_code_filename = var.root_lambda_code_filename
 }

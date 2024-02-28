@@ -11,3 +11,4 @@ variable "glue_script_filename" {}
 variable "raw_zone_crawler_name" {}
 variable "processed_zone_crawler_name" {}
 variable "reference_bucket_crawler_name" {}
+variable "lambda_code_filename" {}
