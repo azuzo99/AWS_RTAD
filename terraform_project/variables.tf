@@ -121,3 +121,7 @@ variable "root_reference_bucket_crawler_name" {
   type        = string
 }
 
+variable "root_lambda_code_filename" {
+    description = "Name of Lambda Code File"
+  type        = string
+}

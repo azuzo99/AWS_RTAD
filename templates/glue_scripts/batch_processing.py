@@ -7,7 +7,7 @@ from awsglue.job import Job
 from datetime import datetime
 
 ## @params: [JOB_NAME, TRIGGER]
-args = getResolvedOptions(sys.argv, ['JOB_NAME', 'TRIGGER', '--version_tag'])
+args = getResolvedOptions(sys.argv, ['JOB_NAME', 'TRIGGER', 'version_tag', 'processed_bucket_name'])
 
 sc = SparkContext()
 glueContext = GlueContext(sc)
@@ -15,9 +15,9 @@ job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
 #Trigger resolving and args parsing
-if args['TRIGGER']=='yes' and args['version_tag']:
+if args['TRIGGER'].lower()=='yes' and args['version_tag']:
     data = [(args['version_tag'], args['TRIGGER'])]  # Data needs to be in tuple format
-elif args['TRIGGER']=='no' and args['version_tag'] == 'latest':
+elif args['TRIGGER'].lower()=='no' and args['version_tag'].lower() == 'latest':
     data = [(args['version_tag'], args['TRIGGER'])]  # Data needs to be in tuple format
 else:
     data = [("None", "None")]  # Data needs to be in tuple format
@@ -35,7 +35,7 @@ df = df.coalesce(1)
 dynamic_frame = DynamicFrame.fromDF(df, glueContext, "dynamic_frame")
 
 # Define your target data path
-processed_bucket_path = "s3://glue-lambda-test-output-pass"
+processed_bucket_path = f"s3://{args['processed_bucket_name']}"
 
 # Write DynamicFrame to S3 bucket in JSON format
 glueContext.write_dynamic_frame.from_options(
@@ -46,6 +46,3 @@ glueContext.write_dynamic_frame.from_options(
 )
 
 job.commit()
-
-
-
