@@ -36,7 +36,7 @@ reference_read_base_options = {
     "transformation_ctx": "read_reference_dataset"
 }
 
-if args.get('VERSION_TAG'):
+if args.get('VERSION_TAG') not in ('latest',''):
     reference_read_base_options["connection_options"]["versionId"] = args.get('VERSION_TAG')
     
 
