@@ -36,15 +36,17 @@ resource "aws_lambda_function" "lambda_watcher" {
 
   environment {
     variables = {
-      versioned_bucket = "${aws_s3_bucket.reference_bucket.id}",
-      job_name = "${var.glue_script_filename}",
+      VERSIONED_BUCKET = "${aws_s3_bucket.reference_bucket.id}",
+      JOB_NAME = "${var.glue_script_filename}",
+      LOG_GROUP_NAME = "${aws_cloudwatch_log_group.batch_log_group.name}"
+      LOG_STREAM_NAME = "${aws_cloudwatch_log_stream.lambda_watcher_log_stream.name}"
 
     }
   }
 
   logging_config {
     log_format = "Text"
-    log_group = "${aws_cloudwatch_log_group.batch_log_group.name}/lambda_watcher"
+    log_group = "${aws_cloudwatch_log_group.batch_log_group.name}"
   }
 
   depends_on = [aws_s3_bucket.reference_bucket, aws_cloudwatch_log_group.batch_log_group]
@@ -55,7 +57,7 @@ resource "aws_lambda_function" "lambda_watcher" {
   }
 }
 
-resource "aws_cloudwatch_log_stream" "lambda_watcher" {
+resource "aws_cloudwatch_log_stream" "lambda_watcher_log_stream" {
   name           = "lambda_watcher"
   log_group_name = aws_cloudwatch_log_group.batch_log_group.name
 
@@ -94,7 +96,6 @@ resource "aws_glue_job" "glue_batch_processing_job" {
   worker_type = "G.1X"
   number_of_workers = 2
   
-  
 
   command {
     script_location = "s3://${aws_s3_bucket.glue_script_bucket.bucket}/Scripts/${var.glue_script_filename}.py"
@@ -109,15 +110,16 @@ resource "aws_glue_job" "glue_batch_processing_job" {
     "--enable-observability-metrics" =	"true",
     "--enable-glue-datacatalog" =	"true",
     "--enable-continuous-cloudwatch-log" =	"true",
-    "--continuous-log-logGroup" = "${aws_cloudwatch_log_group.batch_log_group.name}/${var.glue_script_filename}",
+    "--continuous-log-logGroup" = "${aws_cloudwatch_log_group.batch_log_group.name}",
     "--job-bookmark-option" = "job-bookmark-enable",
     "--TempDir"	= "s3://${aws_s3_bucket.glue_script_bucket.bucket}/temporary/",
     "--enable-auto-scaling" =	"true",
     "--job-language" = "python",
 
-    "--TRIGGER" = "NO",
-    "--version_tag" = "latest",
-    "--processed_bucket_name" = "${var.processed_zone_bucket_name}"
+    "--VERSION_TAG" = "latest",
+    "--PROCESSED_BUCKET_NAME" = "${var.processed_zone_bucket_name}"
+    "--RAW_BUCKET_NAME" = "${var.raw_zone_bucket_name}"
+    "--REFERENCE_BUCKET_NAME" = "${var.reference_bucket_name}"
   }
 }
 
@@ -127,6 +129,13 @@ resource "aws_s3_object" "glue_script" {
   source = "../templates/glue_scripts/${var.glue_script_filename}.py"
 
   depends_on = [aws_s3_bucket.glue_script_bucket]
+}
+
+resource "aws_cloudwatch_log_stream" "glue_log_stream" {
+  name           = "${var.glue_script_filename}"
+  log_group_name = aws_cloudwatch_log_group.batch_log_group.name
+  depends_on = [aws_cloudwatch_log_group.batch_log_group]
+  
 }
 
 
@@ -222,8 +231,6 @@ resource "aws_glue_catalog_table" "firehose_glue_catalog_table" {
       name                  = "JsonSerDe"
       serialization_library = "org.openx.data.jsonserde.JsonSerDe"
 
-      parameters            = { "paths" = "patient_id, hearth_rate, sensor_read_timestamp" }
-
     }
   }
 
@@ -242,6 +249,8 @@ resource "aws_glue_crawler" "raw_zone_crawler" {
   s3_target {
     path = "s3://${aws_s3_bucket.raw_zone_bucket.bucket}"
   }
+
+  depends_on = [ aws_s3_bucket.raw_zone_bucket ]
 
   tags = {
     app = "RTAD"
