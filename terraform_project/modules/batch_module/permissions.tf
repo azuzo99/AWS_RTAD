@@ -54,7 +54,27 @@ resource "aws_iam_policy" "glue_policy" {
           "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:database/${aws_glue_catalog_database.data_catalog.name}",
           "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/${aws_glue_catalog_database.data_catalog.name}/*"
         ]
-      }
+      },
+
+      {
+        Effect = "Allow",
+        Action = "*",
+        Resource = [
+          "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:session/*"
+        ]
+      },
+
+      # {
+      #     "Effect": "Allow",
+      #     "Action": "iam:PassRole",
+      #     "Resource": "arn:aws:iam::813276439036:role/glue_role",
+      #     "Condition": {
+      #         "StringEquals": {
+      #             "iam:PassedToService": "glue.amazonaws.com"
+      #         }
+      #     }
+      # }
+
     ]
   })
 }
